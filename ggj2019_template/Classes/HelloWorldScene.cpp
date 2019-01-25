@@ -55,14 +55,19 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    auto label = Label::createWithTTF("Hello GGJ", "fonts/Marker Felt.ttf", 24);
+    auto gameNameLabel = Label::createWithTTF("GGJ2019", "fonts/Marker Felt.ttf", 24);
     
-    // position the label on the center of the screen
-    label->setPosition({origin.x + visibleSize.width/2,
-        origin.y + visibleSize.height - label->getContentSize().height});
-
-    // add the label as a child to this layer
-    this->addChild(label, 1);
+    gameNameLabel->setPosition({origin.x + visibleSize.width - gameNameLabel->getContentSize().width / 2,
+        origin.y + visibleSize.height - gameNameLabel->getContentSize().height});
+    this->addChild(gameNameLabel, 1);
+    
+    auto startGameLabel = Label::createWithTTF("Start!", "fonts/arial.ttf", 24);
+    
+    auto startGameMenuItem = MenuItemLabel::create(startGameLabel, CC_CALLBACK_1(HelloWorld::startNewGameCallback, this));
+    
+    auto startGameMenu = Menu::createWithItem(startGameMenuItem);
+    startGameMenu->setPosition({visibleSize.width / 2, visibleSize.height / 2});
+    this->addChild(startGameMenu);
 
     // add "HelloWorld" splash screen"
 //    auto sprite = Sprite::create("HelloWorld.png");
@@ -74,6 +79,11 @@ bool HelloWorld::init()
 //    this->addChild(sprite, 0);
     
     return true;
+}
+
+void HelloWorld::startNewGameCallback(cocos2d::Ref*)
+{
+    log("start new game!");
 }
 
 

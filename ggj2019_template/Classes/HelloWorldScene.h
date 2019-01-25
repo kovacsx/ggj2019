@@ -12,6 +12,7 @@ public:
     
     // a selector callback
     void menuCloseCallback(cocos2d::Ref* pSender);
+    void startNewGameCallback(cocos2d::Ref*);
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
